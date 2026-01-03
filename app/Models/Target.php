@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Target extends Model
 {
+
+    protected $fillable = [
+        'shooting_session_id'
+    ];
+
     public function session()
     {
         return $this->belongsTo(ShootingSession::class, 'shooting_session_id');
