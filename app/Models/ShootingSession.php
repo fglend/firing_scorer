@@ -23,4 +23,8 @@ class ShootingSession extends Model
     {
         return $this->hasMany(IotReading::class);
     }
+    public function shots()
+    {
+        return $this->hasMany(Shot::class);
+    }
 }
