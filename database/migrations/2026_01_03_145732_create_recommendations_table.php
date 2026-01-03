@@ -10,12 +10,16 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('shooting_sessions', function (Blueprint $table) {
+        Schema::create('recommendations', function (Blueprint $table) {
             $table->id();
-            $table->string('trainee_name')->nullable();
-            $table->dateTime('session_date')->nullable();
-            $table->integer('total_score')->nullable();
-            $table->float('average_score')->nullable();
+            $table->foreignId('shooting_session_id')
+                ->constrained()
+                ->cascadeOnDelete();
+
+            $table->string('recommendation_type');
+            // e.g. breath_control, trigger_control, sight_alignment
+
+            $table->text('message');
             $table->timestamps();
         });
     }
@@ -25,6 +29,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('shooting_sessions');
+        Schema::dropIfExists('recommendations');
     }
 };
